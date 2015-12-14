@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="Sociax企业社区" name="keywords">
+<meta content="Sociax企业社区" name="description">
+<title> ThinkSNS 3.0-最有价值的社会化网络产品</title>
+<link href="http://localhost/ts3/addons/theme/stv1/_stastic/image/favicon.ico" type="image/x-icon" rel=icon>
+<link href="http://localhost/ts3/addons/theme/stv1/_stastic/image/favicon.ico" type="image/x-icon" rel="shortcut icon">
+<link href="../global.css" rel="stylesheet" type="text/css" />
+<link href="../module.css" rel="stylesheet" type="text/css" />
+<link href="../menu.css" rel="stylesheet" type="text/css" />
+<link href="../form.css" rel="stylesheet" type="text/css" />
+<script>
+/**
+ * 全局变量
+ */
+var SITE_URL  = 'http://localhost/ts3';
+var THEME_URL = 'http://localhost/ts3/addons/theme/stv1/_stastic';
+var APPNAME   = 'club';
+var MID		  = '27940';
+var UID		  = '27940';
+var initNums  =  '141';
+// Js语言变量
+var LANG = new Array();
+</script>
+<script src="http://localhost/ts3/config/lang/public_zh-cn.js"></script>
+<script src="http://localhost/ts3/addons/theme/stv1/_stastic/js/jquery.js"></script>
+<script src="http://localhost/ts3/addons/theme/stv1/_stastic/js/core.js"></script>
+<script src="http://localhost/ts3/addons/theme/stv1/_stastic/js/module.js"></script>
+<script src="http://localhost/ts3/addons/theme/stv1/_stastic/js/common.js"></script>
+<script src="http://localhost/ts3/addons/theme/stv1/_stastic/js/module.common.js"></script>
+<script type="text/javascript" src = "http://localhost/ts3/addons/theme/stv1/_stastic/js/ui.core.js"></script>
+<script type="text/javascript" src = "http://localhost/ts3/addons/theme/stv1/_stastic/js/ui.draggable.js"></script>
+
+</head>
+<body>
+
+
+<link href="weiba.css" rel="stylesheet" type="text/css" />
+<div id="body_page" name='body_page'>
+    <div id="body-bg">
+    <div id="header" name="header">
+    	    	
+				<div class="header-wrap">
+        	<div class="head-bd">
+                <div class="logo"><a href="http://localhost/ts3/index.php?app=public&mod=Index&act=index"><img src="http://localhost/ts3/addons/theme/stv1/_stastic/image/logo.gif"></a></div>
+                <div class="nav">
+                    <ul>
+                        <li  ><a href="http://localhost/ts3" target="_self">首页</a></li><li  class="current"  ><a href="http://192.168.1.100/ts3/index.php?app=club&mod=Index&act=index" target="_self">群英荟</a></li>                    </ul>
+                </div>
+                                 <div class="search">
+                    <div id="mod-search" model-node="drop_search">
+                    <form name="search_feed" id="search_feed" method="get" action="http://localhost/ts3/index.php?app=public&mod=Search&act=index">
+                        <input name="app" value="public" type="hidden"/>
+                        <input name="mod" value="Search" type="hidden"/>
+                        <input type="hidden" name="t" value="2"/>
+                        <input type="hidden" name="a" value="public"/>
+                        <dl>
+                            <dt class="clearfix"><input id="search_input" class="s-txt left"  type="text" value="搜微博 / 用户" onfocus="this.value=''" onblur="setTimeout(function(){ $('#search-box').remove();} , 200);if(this.value=='') this.value='搜微博 / 用户';" event-node="searchKey" name='k'><a href="javascript:void(0)" class="ico-search left" onclick="if(getLength($('#search_input').val()) && $('#search_input').val()!=='搜微博 / 用户'){ $('#search_feed').submit(); return false;}"></a>
+                            </dt>
+                        </dl>
+                    </form>
+                    </div>
+                </div> 
+                <div class="person">
+                    <ul>
+                        <li style="display:none">
+							<a href="http://localhost/ts3/@27940" class="face"><img event-node="header_avatar" src="http://localhost/ts3/data/upload/avatar/e7/26/9f/small_1347430474.jpg" width="20" /></a>
+                        </li>
+                        <li model-node="person" class="dorp-right">
+                            <a href="http://localhost/ts3/@27940" class="username">乔丽</a>
+                            <!--<div model-node="drop_menu_list" class="dropmenu">
+                                <dl class="acc-list">
+                                <dd><a href="http://localhost/ts3/@27940">我的微博</a></dd>
+                                <dd><a href="http://localhost/ts3/index.php?app=public&mod=Profile&act=data&uid=27940">我的档案</a></dd>
+                                <dd><a href="http://localhost/ts3/index.php?app=public&mod=Collection&act=index">我的收藏</a></dd>
+                                                                </dl>
+                            </div>-->
+                        </li>                       
+                        <li model-node="notice" class="dorp-right"><a href="javascript:void(0);" class="app">消息</a>
+                            <div  class="dropmenu" model-node="drop_menu_list">
+                            	<ul class="message_list_container message_list_new"  style="display:none">
+                                    <li rel="new_folower_count" style="display:none">
+                                        <span></span>，<a href="http://localhost/ts3/index.php?app=public&mod=Profile&act=follower&uid=27940">查看粉丝</a></li>
+                                    <li rel="unread_comment" style="display:none"><span></span>，<a href="http://localhost/ts3/index.php?app=public&mod=Comment&act=index&type=receive">
+                                        查看消息</a></li>
+                                    <li rel="unread_message" style="display:none"><span></span>，<a href="http://localhost/ts3/index.php?app=public&mod=Message&act=index" >查看消息</a></li>
+                                    <li rel="unread_atme" style="display:none"><span></span>，<a href="http://localhost/ts3/index.php?app=public&mod=Mention&act=index">查看消息</a></li>
+                                    <li rel="unread_notify" style="display:none"><span></span>，<a href="http://localhost/ts3/index.php?app=public&mod=Message&act=notify">查看消息</a></li>
+                                </ul>
+                                <dl class="acc-list W-message" >
+                                    <dd><a  href="http://localhost/ts3/index.php?app=public&mod=Mention&act=index">@提到我的</a></dd>
+                                    <dd><a  href="http://localhost/ts3/index.php?app=public&mod=Comment&act=index&type=receive">收到的评论</a></dd>
+                                    <dd><a  href="http://localhost/ts3/index.php?app=public&mod=Comment&act=index&type=send">发出的评论</a></dd>
+                                    <dd><a  href="http://localhost/ts3/index.php?app=public&mod=Message&act=index">我的私信</a></dd>
+                                    <dd><a  href="http://localhost/ts3/index.php?app=public&mod=Message&act=notify">系统消息</a></dd>
+                                <dd class="border"><a event-node="postMsg" href="javascript:void(0)" onclick="ui.sendmessage()">发私信&raquo;</a></dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li model-node="account" class="dorp-right"><a href="javascript:void(0);" class="app">帐号</a>
+                            <div model-node="drop_menu_list" class="dropmenu" style="width:100px">
+                                <dl class="acc-list">
+                                <dd><a href="http://localhost/ts3/index.php?app=public&mod=Account&act=index">设置</a></dd>
+                                <dd><a event-node="invite_colleague" href="http://localhost/ts3/index.php?app=public&mod=Invite&act=invite&">邀请同事</a></dd>
+                                
+                                
+                                                                <dd><a href="http://localhost/ts3/index.php?app=admin&mod=Index&act=index">后台管理</a></dd>
+                                
+                                <dd class="border"><a href="http://localhost/ts3/index.php?app=public&mod=Passport&act=logout">退出&raquo;</a></dd>
+                                <dd></dd>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </div> 
+                <!-- <li model-node="search_icon" class="search dorp-right"><a href="javascript:;" class="app"><i class="ico-search"></i></a>
+                            <div class="dropmenu" model-node="drop_menu_list" search="yes">
+                                
+                                <div id="mod-search" model-node="drop_search">
+                                    <dl>
+                                        <dt><input type="text" value="按名字查找" class="s-txt left"  onfocus="this.value=''" event-node="searchKey"><a href="#" onclick = "core.search.dosearch();" class="ico-search-task left" style="float:left"></a></dt>
+                                        
+                                    </dl>
+                                </div>                 
+                            </div>
+                </li>
+                <div class="search">
+                    <input class="text"  type="text" value="输入昵称/标签/关键字" onfocus="this.value=''" event-node="searchKey"><a href="#" onclick = "core.search.dosearch();"><i class="ico-search"></i></a>
+                </div>  -->           
+                                <div id="message_container" class="layer-massage-box" style="display:none">
+                	<ul class="message_list_container" >
+                        <li rel="new_folower_count" style="display:none"><span></span>，<a href="http://localhost/ts3/index.php?app=public&mod=Index&act=follower">查看粉丝</a></li>
+                		<li rel="unread_comment" style="display:none"><span></span>，<a href="http://localhost/ts3/index.php?app=public&mod=Comment&act=index&type=receive">查看消息</a></li>
+                        <li rel="unread_message" style="display:none"><span></span>，<a href="http://localhost/ts3/index.php?app=public&mod=Message&act=index" >查看消息</a></li>
+ 	                    <li rel="unread_atme" style="display:none"><span></span>，<a href="http://localhost/ts3/index.php?app=public&mod=Mention&act=index">查看消息</a></li>
+     	                <li rel="unread_notify" style="display:none"><span></span>，<a href="http://localhost/ts3/index.php?app=public&mod=Message&act=notify">查看消息</a></li>
+                	</ul>
+                <a href="javascript:void(0)" onclick="core.dropnotify.closeParentObj()" class="ico-close"></a>
+                </div>
+                        	</div>
+        </div>
+                <div id="search"  class="mod-at-wrap search_footer" model-node='search_footer' style="display:none;z-index:-1">
+            <div class="search-wrap">
+                <div class="input">
+                     <form id="search_form" action="http://localhost/ts3/index.php?app=public&mod=Search&act=index" method="GET">
+                        <div class="search-menu" model-node='search_menu' model-args='a=&t='>
+                            <a href="javascript:;" id='search_cur_menu'>全站<i class="ico-more"></i></a>
+                        </div>
+                        <input name="app" value="public" type="hidden" />
+                        <input name="mod" value="Search" type="hidden" />
+                        <input name="a" value="" id='search_a' type="hidden"/>
+                        <input name="t" value="" id='search_t' type="hidden"/>
+                        <input name="k" value="" type="text" class="s-txt" onblur="this.className='s-txt'" onfocus="this.className='s-txt-focus'" autocomplete="off">
+                        <a class="btn-red left" href="javascript:void(0);" onclick="$('#search_form').submit();"><span class="ico-search"></span></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="mod-at-wrap" id="search_menu" ison='no' style="display:none" model-node="search_menu_ul">
+        <div class="mod-at">
+            <div class="mod-at-list">
+                <ul class="at-user-list">
+                    <li onclick="core.search.doShowCurMenu(this)" a='public' t='' typename='全站'>全站</li>
+                                    <li onclick="core.search.doShowCurMenu(this)" a='public' t='1' typename='用户'>用户</li>                    <li onclick="core.search.doShowCurMenu(this)" a='public' t='2' typename='微博'>微博</li>   
+                </ul>
+            </div>
+        </div>
+        </div>
+        
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("#mod-product dd").hover(function() {
+            $(this).addClass("hover");
+        }, function() {
+            $(this).removeClass("hover");
+        });
+        core.plugInit('search');
+    });
+
+    core.plugFunc('dropnotify',function(){
+        setTimeout(function(){
+            core.dropnotify.init('message_list_container','message_container');
+        },320);   
+    });
+
+    </script>    </div><!--header end-->
+    
+
+<div id="page-wrap">
+	   <div id="main-wrap">
+	   	   	 <div class="app-type mb20 boxShadow clearfix">
+	   	   	   	   <div class="app-title clearfix">
+                       <h4 class="left"><img src="../weiba/image/ico-weib.gif" />微吧</h4>
+                       <div class="search-input">
+                           <a href=""><i class="ico-search"></i></a><input type="text"><a href="" class="btn-search"><span>搜索</span></a>
+                      </div>
+                   </div>
+                   <div class="app-tab-menu" model-node="user_category_list">
+                      <dl>
+                        <dt>
+                          <a href="">首页</a><a  href="">我的微吧</a>  
+                        </dt>
+                     </dl>
+                   </div>
+            </div>
+	   	   	   <div class="mb10 boxShadow clearfix">
+                 <div id="col3" class="st-index-right">
+                    <div class="right-wrap">
+                       <div class="weiba-rank-list">
+                         <h3>微吧排行榜</h3>
+                         <ul>
+                            <li><i class="ico-num ico-num1"></i>
+                            <dl>
+                               <dt><img src="../weiba/image/pic.jpg" /></dt>
+                               <dd><p><a href="">旅行吧</a></p><p>粉丝数:132564  帖子数:4567789</p></dd>
+                            </dl></li>
+                            <li><i class="ico-num ico-num2"></i>
+                            <dl>
+                               <dt><img src="../weiba/image/pic.jpg" /></dt>
+                               <dd><p><a href="">旅行吧</a></p><p>粉丝数:132564  帖子数:4567789</p></dd>
+                            </dl></li>
+                            <li><i class="ico-num ico-num3"></i>
+                            <dl>
+                               <dt><img src="../weiba/image/pic.jpg" /></dt>
+                               <dd><p><a href="">旅行吧</a></p><p>粉丝数:132564  帖子数:4567789</p></dd>
+                            </dl></li>
+                            <li><i class="ico-num ico-num4"></i>
+                            <dl>
+                               <dt><img src="../weiba/image/pic.jpg" /></dt>
+                               <dd><p><a href="">旅行吧</a></p><p>粉丝数:132564  帖子数:4567789</p></dd>
+                            </dl></li>
+                            <li><i class="ico-num ico-num5"></i>
+                            <dl>
+                               <dt><img src="../weiba/image/pic.jpg" /></dt>
+                               <dd><p><a href="">旅行吧</a></p><p>粉丝数:132564  帖子数:4567789</p></dd>
+                            </dl></li>
+                            <li><i class="ico-num ico-num6"></i>
+                            <dl>
+                               <dt><img src="../weiba/image/pic.jpg" /></dt>
+                               <dd><p><a href="">旅行吧</a></p><p>粉丝数:132564  帖子数:4567789</p></dd>
+                            </dl></li>
+                            <li><i class="ico-num ico-num7"></i>
+                            <dl>
+                               <dt><img src="../weiba/image/pic.jpg" /></dt>
+                               <dd><p><a href="">旅行吧</a></p><p>粉丝数:132564  帖子数:4567789</p></dd>
+                            </dl></li>
+                            <li><i class="ico-num ico-num8"></i>
+                            <dl>
+                               <dt><img src="../weiba/image/pic.jpg" /></dt>
+                               <dd><p><a href="">旅行吧</a></p><p>粉丝数:132564  帖子数:4567789</p></dd>
+                            </dl></li>
+                            <li><i class="ico-num ico-num9"></i>
+                            <dl>
+                               <dt><img src="../weiba/image/pic.jpg" /></dt>
+                               <dd><p><a href="">旅行吧</a></p><p>粉丝数:132564  帖子数:4567789</p></dd>
+                            </dl></li>
+                            <li><i class="ico-num ico-num10"></i>
+                            <dl>
+                               <dt><img src="../weiba/image/pic.jpg" /></dt>
+                               <dd><p><a href="">旅行吧</a></p><p>粉丝数:132564  帖子数:4567789</p></dd>
+                            </dl></li>
+
+                       </ul>
+                       </div>  
+                    </div>
+                 </div>
+                 <div id="col5" class="st-index-main">
+                    <div class="extend-foot">
+                        <div class="search-box mb20">
+                            <ul class="search-tab">
+                               <li><a href="">微吧</a></li>
+                               <li class="current"><a href="">帖子</a></li>
+                            </ul>
+                            <div class="search-content clearfix">
+                               <div class="search-input">
+                                <a href=""></a><input type="text"><a href="" class="btn-search"><span>搜索</span></a>
+                               </div>
+                            </div>
+                        </div>
+                        <p class="mb20">抱歉，暂时没有与“爱游人”相关的微吧</p>
+                        <div class="weiba-pic">
+                          <div class="weiba-pic-title"><h3>热门微吧推荐</h3></div>
+                          <ul>
+                             <li><div class="weiba-pic-l"><a href=""><img src="../weiba/image/face.jpg" /><a class="btn-cancel"><span><b class="ico-add-black"></b>关注</span></a></a></div><a href="" class="weiba-name">旅游吧</a></li>
+                             <li><div class="weiba-pic-l"><a href=""><img src="../weiba/image/face.jpg" /><a class="btn-cancel"><span><b class="ico-add-black"></b>关注</span></a></a></div><a href="" class="weiba-name">音乐吧</a></li>
+                             <li><div class="weiba-pic-l"><a href=""><img src="../weiba/image/face.jpg" /><a class="btn-cancel"><span><b class="ico-add-black"></b>关注</span></a></a></div><a href="" class="weiba-name">动漫吧</a></li>
+                             <li><div class="weiba-pic-l"><a href=""><img src="../weiba/image/face.jpg" /><a class="btn-cancel"><span><b class="ico-add-black"></b>关注</span></a></a></div><a href="" class="weiba-name">音乐吧</a></li>
+                             <li class="no-margin"><div class="weiba-pic-l"><a href=""><img src="../weiba/image/face.jpg" /><a class="btn-cancel"><span><b class="ico-add-black"></b>关注</span></a></a></div><a href="" class="weiba-name">旅游吧</a></li>
+                             <li><div class="weiba-pic-l"><a href=""><img src="../weiba/image/face.jpg" /><a class="btn-cancel"><span><b class="ico-add-black"></b>关注</span></a></a></div><a href="" class="weiba-name">音乐吧</a></li>
+                             <li><div class="weiba-pic-l"><a href=""><img src="../weiba/image/face.jpg" /><a class="btn-cancel"><span><b class="ico-add-black"></b>关注</span></a></a></div><a href="" class="weiba-name">旅游吧</a></li>
+                             <li><div class="weiba-pic-l"><a href=""><img src="../weiba/image/face.jpg" /><a class="btn-cancel"><span><b class="ico-add-black"></b>关注</span></a></a></div><a href="" class="weiba-name">动漫吧</a></li>
+                             <li><div class="weiba-pic-l"><a href=""><img src="../weiba/image/face.jpg" /><a class="btn-cancel"><span><b class="ico-add-black"></b>关注</span></a></a></div><a href="" class="weiba-name">动漫吧</a></li>
+                             <li class="no-margin"><div class="weiba-pic-l"><a href=""><img src="../weiba/image/face.jpg" /><a class="btn-cancel"><span><b class="ico-add-black"></b>关注</span></a></a></div><a href="" class="weiba-name">插画吧</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                 </div>
+           	 </div>
+	   </div>
+</div>
+
+<input type="hidden" value="0" id="user_category_id" />
+
+<script type="text/javascript">
+M.addModelFns({
+  club_list: {
+    load: function() {
+      $(this).find("li").each(function(i, n) {
+        if(i != 0 && (i + 1) % 5 == 0) {
+          $(this).css('margin-right', 0);
+        }
+      });
+    }
+  }
+});
+
+// 认证用户组用户筛选
+M.addEventFns({
+  authenticate: {
+    click: function() {
+      var checked = $(this).attr('checked');
+      var url = U('club/Index/index');
+      if(checked) {
+        url += '&cid=' + $('#user_category_id').val() + '&authenticate=1';
+        // 刷新页面，显示数据
+        window.location.href = url;
+      } else {
+        url += '&cid=' + $('#user_category_id').val() + '&authenticate=0';
+        // 刷新页面，显示数据
+        window.location.href = url;
+      }
+    }
+  }
+});
+</script>
+
+      <div id="footer">
+    	<div class="footer-wrap">
+    		<p>Copyright 2012 ZhishiSoft All Rights Reserved. </p>
+    	</div>
+    </div><!--footer end-->
+</div><!--page end-->
+</body>
+</html>

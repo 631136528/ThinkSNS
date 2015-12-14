@@ -1,0 +1,11 @@
+<div id="listInfo">
+  <php> if(empty($list)) { </php>
+  <h3>你当前版本已经是最新版本，不需要升级</h3>
+  <php> } else {  </php>
+  <volist name='list' id='vo'> 
+     <h3>{$vo.title}</h3>
+    <p><a href="javascript:void(0)" onclick="downloadPackage('{$vo.package}','{$key}')" class="btn_b right">升级</a><span>{$vo.description}</span>
+    </p> </volist>
+	
+	<php> }  </php>
+</div>

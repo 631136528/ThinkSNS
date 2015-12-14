@@ -1,0 +1,35 @@
+
+/*排行列表*/
+.rank-bg{background:#fff;}
+.rank-box{width:278px;height:530px;padding:20px 20px 0 20px;float:left;border-right:1px solid #ddd;margin:20px 0;}
+.rank-box.no-border{border-right:0;}
+.rank-tit{font-size:14px;color:#333;font-weight:bold;margin:0 0 10px 0;}
+.rank-tit span{font-size:12px;}
+.rank-num{width:278px;text-align:center;height:24px;line-height:24px;background:#f6f6f6;border-top:2px solid #ddd;color:#999;font-size:12px;}
+.rank-num em{color:#ffa200;font-style:normal;font-weight:bold;font-size:14px;}
+.rank-cate{height:27px;line-height:27px;border-bottom:1px dotted #b9bcbd;overflow:hidden;zoom:1;color:#999;}
+.rank-cate .number{float:right;}
+.rank-cate .num{float:left;width:44px;display:inline-block;}
+.rank-lists .num{height:44px;margin:2px 0 0 0;float:left;}
+.rank-cate .name{float:left;display:inline-block;}
+.rank-lists{height:44px;line-height:44px;border-bottom:1px dotted #b9bcbd;}
+.rank-lists .name{float:left;display:inline-block;_margin:6px 0 0 0;}
+.rank-lists .name .face{margin:0 10px 0 0;width:30px;display:inline-block;}
+.rank-box .rank-lists.current{background:#eee;}
+.rank-forward{width:960px;padding:60px 0;text-align:center;}
+
+/*图标*/
+.ico-comment{background-position:-219px -66px;width:16px;height:16px;vertical-align:-6px;*vertical-align:-3px}
+.ico-forward{background-position:-219px 0;width:16px;height:16px;vertical-align:-5px;*vertical-align:-3px}
+.ico-favorites{background-position:-219px -33px;width:16px;height:16px;vertical-align:-4px;*vertical-align:-2px}
+.rank-lists .num.ico-num1{background-position:-303px 0;display:inline-block;margin:10px 0 0 0;}
+.rank-lists .num.ico-num2{background-position:-303px -46px;display:inline-block;margin:10px 0 0 0;}
+.rank-lists .num.ico-num3{background-position:-303px -89px;display:inline-block;margin:10px 0 0 0;}
+.rank-lists .num.ico-num4{background-position:-303px -138px;display:inline-block;margin:12px 0 0 0;}
+.rank-lists .num.ico-num5{background-position:-303px -183px;display:inline-block;margin:12px 0 0 0;}
+.rank-lists .num.ico-num6{background-position:-303px -226px;display:inline-block;margin:12px 0 0 0;}
+.rank-lists .num.ico-num7{background-position:-303px -273px;display:inline-block;margin:12px 0 0 0;}
+.rank-lists .num.ico-num8{background-position:-303px -316px;display:inline-block;margin:12px 0 0 0;}
+.rank-lists .num.ico-num9{background-position:-303px -363px;display:inline-block;margin:12px 0 0 0;}
+.rank-lists .num.ico-num10{background-position:-303px -408px;display:inline-block;margin:12px 0 0 0;}
+.rank-lists .num.ico-piece{background-position:-266px 0;display:inline-block;width:4px;height:4px;vertical-align:middle;margin:0 5px 0 0;}

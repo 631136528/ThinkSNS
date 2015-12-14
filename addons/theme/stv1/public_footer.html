@@ -1,0 +1,29 @@
+<div class="footer">
+   <div class="login-footer">
+      <div class="foot clearfix">
+         <volist name="site_bottom_nav" id="nv">
+         <dl>
+            <dt><a href="{$nv.url}">{$nv['navi_name']}</a></dt>
+            <volist name="nv.child" id="cv">
+            <dd><a href="{$cv.url}" target="{$cv.target}">{$cv['navi_name']}</a></dd>
+            </volist>
+         </dl>
+         </volist>
+      </div>
+    <p>
+      <span class="right">Powered By <a href="http://www.thinksns.com" title="开源微博系统,开源微社区" target="_blank">ThinkSNS</a></span>
+      {$GLOBALS.ts.site.site_footer}
+    </p>
+  </div>
+</div><!--footer end-->
+</div><!--page end-->
+{:Addons::hook('public_footer')}
+<!-- 统计代码-->
+<div id="site_analytics_code" style="display:none;">
+{$site.site_analytics_code}
+</div>
+<eq name='site.site_online_count' value='1'>
+<script src="{:SITE_URL}/online_check.php?uid={$mid}&uname={$user.uname}&mod={:MODULE_NAME}&app={:APP_NAME}&act={:ACTION_NAME}&action=trace"></script>
+</eq>
+</body>
+</html>

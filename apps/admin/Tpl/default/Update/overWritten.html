@@ -1,0 +1,30 @@
+<div class="updatelist">
+  <a href="{:U('admin/Update/index')}" class="btn_b right">返回</a>
+  <php>if(!empty($error)) { </php>
+  <h3>下面是自动更新失败的文件，需要手动覆盖更新</h3>
+  <ul>
+    <volist name='error' id='vo'>
+      <li>{$vo}</li>
+    </volist>
+  </ul>
+  <php> } </php> 
+  
+  <php> if(!empty($deleteList)) { </php>
+  <h3>下面需要手工删除的文件有：</h3>
+  <ul>
+    <volist name='deleteList' id='vo'>
+      <li>{$vo}</li>
+    </volist>
+  </ul>
+  <php> } </php> 
+   
+  <php> if(!empty($success)) { </php>
+  <h3>自动更新成功的文件列表有：</h3>
+  <ul>
+    <volist name='success' id='vo'>
+      <li>{$vo}</li>
+    </volist>
+  </ul>
+  <php> } </php>
+  
+</div>

@@ -1,0 +1,71 @@
+<include file="../Public/_header" />
+
+<div id="showInfomation"></div>
+<script type="text/javascript">
+
+function checkVersion(){
+    $('#showInfomation').html('<h3><img src="__APP__/image/loading2.gif" class="mr10"/>更新版本查询中...</h3>');
+    var postURL = "{:U('admin/Update/checkVersionByAjax')}";
+	$.post(postURL, {}, function(res){
+	    $('#showInfomation').html(res);
+	});
+}
+function downloadPackage(packageName, key){
+    if(!confirm('温馨提示：升级前强烈建议备份数据库，如果你还没备份，请点击取消后先去备份，如已备份请点击确定继续升级。')){
+	   return false;
+	}
+    $('#showInfomation').html('<h3><img src="__APP__/image/loading2.gif" class="mr10"/>下载更新包中...请稍等...</h3>');
+    var postURL = "{:U('admin/Update/download')}&packageName=" + packageName + "&key=" + key;
+	$.post(postURL, {}, function(res){
+	    if(res==0){
+		   $('#showInfomation').html('<h3>更新包下载失败，请检查你的网络连接是否正常</h3>');
+		}else{
+		   window.location.href="{:U('admin/Update/index')}&step=unzipPackage&packageName=" + packageName;
+		}
+	});
+}
+function unzipPackage(){
+    $('#showInfomation').html('<h3><img src="__APP__/image/loading2.gif" class="mr10"/>更新包解压中...</h3>');
+	var packageName = "{:$_GET['packageName']}";
+	var postURL = "{:U('admin/Update/unzipPackage')}&packageName=" + packageName;
+	$.post(postURL, {}, function(res){
+	    if(res!=1){
+		   $('#showInfomation').html(res);
+		}else{
+		   window.location.href="{:U('admin/Update/index')}&step=dealSQL";
+		}
+	});	
+}
+function dealSQL(){
+    $('#showInfomation').html('<h3><img src="__APP__/image/loading2.gif" class="mr10"/>更新数据库数据中...</h3>');
+	var postURL = "{:U('admin/Update/dealSQL')}";
+	$.post(postURL, {}, function(res){
+         if(res!=1){
+		   $('#showInfomation').html(res);
+		}else{
+		   window.location.href="{:U('admin/Update/index')}&step=copyFileToProject";
+		}
+	});	
+}
+function copyFileToProject(){
+    $('#showInfomation').html('<h3><img src="__APP__/image/loading2.gif" class="mr10"/>更新系统文件中...</h3>');
+	var postURL = "{:U('admin/Update/overWritten')}";
+	$.post(postURL, {}, function(res){
+         $('#showInfomation').html(res);
+	});	
+}
+
+var step = "{:$_GET['step']}";
+
+if(step=='unzipPackage'){
+    unzipPackage();
+}else if(step=='dealSQL'){
+    dealSQL();
+}else if(step=='copyFileToProject'){
+    copyFileToProject();
+}else{
+    checkVersion();
+}
+</script>
+
+<include file="../Public/_footer" />

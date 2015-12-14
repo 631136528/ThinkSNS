@@ -1,0 +1,239 @@
+<php>
+$weiboSet = model('Xdata')->get('admin_Config:feed');
+$weibo_premission = $weiboSet['weibo_premission'];
+</php>
+
+<php>if($curApp =='public' && empty($curType)):</php>        
+<!-- 全站搜索 -->
+
+<volist name='appData' id='d'>
+	<php> if($key == '1'):</php>
+	 <!-- START 用户数据 -->
+	<div class="recommend-user clearfix">
+	<volist name='d.data' id='du'>		
+	<dl>
+	    <dt class="face">
+	    	<a href="{$du.space_url}" class="face">
+	    	<img src="{$du.avatar_middle}" uid='{$du.uid}' event-node='face_card'/></a>
+	    </dt>
+	    <dd class="content">
+	    	<p class="name">{$du.space_link}</p>
+	    	<p class="fans">{:L('PUBLIC_FOLLOWERS')}：{$du.user_data.follower_count|default=0}</p>
+	    </dd>
+	    <neq name='du.uid' value='$uid'>
+	    <dd>  {:W('FollowBtn', array('fid'=>$du['uid'], 'uname'=>$du['uname'], 'follow_state'=>$du['followState'], 'type'=>'normal'))}</dd>
+	    </neq>
+	</dl>
+	</volist>
+	</div>
+	<div class="bd-hvb more"><a href="{:U('public/Search',array('k'=>$_GET['k'],'a'=>$curApp,'t'=>1))}">{:L('PUBLIC_LIST_NUM_USER',array('num'=>$d['count']))}&raquo;</a></div>
+	<!-- END 用户数据 -->
+	<php>endif;</php>
+
+	<php> if($key == '2'):</php>
+	<!-- START 动态数据 -->
+	<div id="feed-lists" class="feed_lists">
+        <!--feed list-->
+        <php> $cancomment = intval(CheckPermission('core_normal','feed_comment')); </php>
+        <volist name='d.data' id='vl'>
+			<php>
+					$cancomment_old = empty($vl['app_row_id']) ? 0 : 1;
+				</php>
+				<dl class="feed_list" id ='feed{$vl.feed_id}'  model-node='feed_list' >
+				<dt class="face">
+				<a href="{$vl['user_info']['space_url']}"><img src="{$vl['user_info']['avatar_middle']}" event-node="face_card" uid='{$vl['user_info']['uid']}'></a></dt>
+				<dd class="content">
+	            <a class="date" href="{:U('public/Profile/feed',array('feed_id'=>$vl['feed_id'],'uid'=>$vl['uid']))}">{$vl.publish_time|friendlyDate}</a>
+				<eq name='vl.is_del' value='0'>
+						<p class="hd">{$vl.title} 
+						<php> if(in_array($vl['user_info']['uid'],$followUids)){</php>
+						{:W('Remark',array('uid'=>$vl['user_info']['uid'],'remark'=>$remarkHash[$vl['user_info']['uid']],'showonly'=>1))}
+						<php>}</php>
+						</p>
+						
+					<php>if(!empty($vl['body'])){</php><p>{$vl.body}</p><php>}</php>
+					
+					<p class="info">
+					<eq name='vl.actions.favor' value='true'>
+						{:W('Collection',array('type'=>$type,'sid'=>$vl['feed_id'],'stable'=>'feed','sapp'=>'public'))}
+					</eq>
+
+					<php>if(in_array('repost',$weibo_premission)):</php>
+					<eq name='vl.actions.repost' value='true'>
+					<php>if(CheckPermission('core_normal','feed_share')){</php>
+						<i class="vline">&#8211;</i>
+						<php>
+							$sid = !empty($vl['app_row_id'])? $vl['app_row_id'] : $vl['feed_id'];
+
+						</php>
+						{:W('Share',array('sid'=>$sid,'stable'=>$vl['app_row_table'],'initHTML'=>'','current_table'=>'feed','current_id'=>$vl['feed_id'],'nums'=>$vl['repost_count'],'appname'=>$vl['app']))}
+					<php>}</php>
+					</eq>
+					<php>endif;</php>
+					
+				
+					<php>if(in_array('comment',$weibo_premission)):</php>
+					<eq name='vl.actions.comment' value='true'>
+						<i class="vline">&#8211;</i>
+						<a event-node="comment" href="javascript:void(0)" event-args='row_id={$vl.feed_id}&app_uid={$vl.uid}&app_row_id={$vl.app_row_id}&to_comment_id=0&to_uid=0&app=public&table=feed&cancomment={$cancomment}&cancomment_old={$cancomment_old}'>{:L('PUBLIC_STREAM_COMMENT')}<neq name='vl.comment_count' value='0'> ({$vl.comment_count}) </neq></a>
+					</eq>
+					<php>endif;</php>
+
+					<em class="hover">
+					<php>if($vl['user_info']['uid'] != $GLOBALS['ts']['mid']){</php>
+					<php>if(CheckPermission('core_normal','feed_report')){</php>
+					<i class="vline">&#8211;</i><a href="javascript:void(0)" event-node='denounce' event-args='aid={$vl.feed_id}&type=feed&uid={$vl.user_info.uid}'>{:L('PUBLIC_STREAM_REPORT')}</a>
+					<php>}</php>
+					<php>}</php>
+					
+					<eq name='vl.actions.delete' value='true'>
+					<!-- 做普通删除权限 和 管理删除权限 判断 & 只有微博可以被删除  -->
+					<php>if(($vl['user_info']['uid'] == $GLOBALS['ts']['mid']) || CheckPermission('core_admin','feed_del') ) {</php>
+					<i class="vline">&#8211;</i>  <a href="javascript:void(0)" event-node ='delFeed' event-args='feed_id={$vl.feed_id}&uid={$vl.user_info.uid}'>{:L('PUBLIC_STREAM_DELETE')}</a>
+					<php>}</php>
+					</eq>
+					</em>
+					</p>
+					<div model-node="comment_detail" class="repeat clearfix" style="display:none;"></div>
+				<else />
+					<p>{:L('PUBLIC_INFO_ALREADY_DELETE_TIPS')}</p>
+					<p class="info">
+						<eq name='vl.actions.favor' value='true'>
+						{:W('Collection',array('type'=>$type,'sid'=>$vl['feed_id'],'stable'=>'feed','sapp'=>'public'))}
+						</eq>
+					</p>
+				</eq>
+				</dd>
+			</dl>
+		</volist>
+	</div>	
+	<div class="bd-hvb more"><a href="{:U('public/Search',array('k'=>$_GET['k'],'a'=>$curApp,'t'=>2))}">{:L('PUBLIC_LIST_NUM_WEIBO',array('num'=>$d['count']))}&raquo;</a></div>
+	<!-- END 动态数据 -->
+	<php>endif;</php>
+</volist>
+<php> endif;</php>
+
+<eq name='curType' value='1'>
+<volist name='data.data' id='vl'>
+<dl class="clearfix">
+    <dt class="face"><a href="{$vl.space_url}" event-node='face_card' uid="{$vl.uid}">
+    	<img src="{$vl.avatar_middle}">
+    </a></dt>
+    <dd class="concern">
+        
+        <neq name='vl.uid' value='$uid'>
+        <p>
+        	{:W('FollowBtn', array('fid'=>$vl['uid'], 'uname'=>$vl['uname'], 'follow_state'=>$vl['followState'], 'type'=>'normal'))}
+        </p>	
+        </neq>
+        
+    </dd>
+    <dd class="person-info">
+   	  <p class="hd">{$vl.space_link} <span><i class="ico-male"></i>{$vl.location}</span></p>
+    	<p class="link"><a href="{$vl.space_url}">{$vl.space_url}</a></p>
+        <p class="action">
+        	{:L('PUBLIC_FOLLOWING')}：<a href="#">{$vl.user_data.following_count|default=0}</a><i class="vline">|</i>
+        	{:L('PUBLIC_FOLLOWERS')}：<a href="#">{$vl.user_data.follower_count|default=0}</a><i class="vline">|</i>
+        	{:L('PUBLIC_WEIBO')}：<a href="#">{$vl.user_data.weibo_count|default=0}</a></p>
+        <p class="info">
+        	<php> $departMent = str_replace('|','-',trim($vl['profile'][$data['profileSetting']['department']['field_id']]['field_data'],'|'));</php>
+        	{$data['profileSetting']['department']['field_name']}：{$departMent}</p>
+        <p class="info">{$data['profileSetting']['intro']['field_name']}：{$vl['profile'][$data['profileSetting']['intro']['field_id']]['field_data']}</p>
+      	<p class="tags">
+      		{:L('PUBLIC_TAG')}：
+      		<php>$userTag = $data['user_tag'][$vl['uid']];</php>
+      		<volist name="userTag" id="u_t_v"> <b> {$u_t_v} </b> </volist>
+      	</p>
+  </dd>
+</dl>
+</volist>
+</eq>
+
+<eq name='curType' value="2">
+	<div id="feed-lists" class="feed_lists">
+        <!--feed list-->
+        <php> $cancomment = intval(CheckPermission('core_normal','feed_comment')); </php>
+        <volist name='data.data' id='vl'>
+			<php>
+					$cancomment_old = empty($vl['app_row_id']) ? 0 : 1;
+				</php>
+				<dl class="feed_list" id ='feed{$vl.feed_id}'  model-node='feed_list' >
+				<dt class="face">
+				<a href="{$vl['user_info']['space_url']}"><img src="{$vl['user_info']['avatar_middle']}" event-node="face_card" uid='{$vl['user_info']['uid']}'></a></dt>
+				<dd class="content">
+	            <a class="date" href="{:U('public/Profile/feed',array('feed_id'=>$vl['feed_id'],'uid'=>$vl['uid']))}">{$vl.publish_time|friendlyDate}</a>
+				<eq name='vl.is_del' value='0'>
+						<p class="hd">{$vl.title} 
+						<php> if(in_array($vl['user_info']['uid'],$followUids)){</php>
+						{:W('Remark',array('uid'=>$vl['user_info']['uid'],'remark'=>$remarkHash[$vl['user_info']['uid']],'showonly'=>1))}
+						<php>}</php>
+						</p>
+						
+					<php>if(!empty($vl['body'])){</php><p>{$vl.body}</p><php>}</php>
+					
+					<p class="info">
+					<eq name='vl.actions.favor' value='true'>
+						{:W('Collection',array('type'=>$type,'sid'=>$vl['feed_id'],'stable'=>'feed','sapp'=>'public'))}
+					</eq>
+
+					<php>if(in_array('repost',$weibo_premission)):</php>
+					<eq name='vl.actions.repost' value='true'>
+					<php>if(CheckPermission('core_normal','feed_share')){</php>
+						<i class="vline">&#8211;</i>
+						<php>
+							$sid = !empty($vl['app_row_id'])? $vl['app_row_id'] : $vl['feed_id'];
+
+						</php>
+						{:W('Share',array('sid'=>$sid,'stable'=>$vl['app_row_table'],'initHTML'=>'','current_table'=>'feed','current_id'=>$vl['feed_id'],'nums'=>$vl['repost_count'],'appname'=>$vl['app']))}
+					<php>}</php>
+					</eq>
+					<php>endif;</php>
+					
+				
+					<php>if(in_array('comment',$weibo_premission)):</php>
+					<eq name='vl.actions.comment' value='true'>
+						<i class="vline">&#8211;</i>
+						<a event-node="comment" href="javascript:void(0)" event-args='row_id={$vl.feed_id}&app_uid={$vl.uid}&app_row_id={$vl.app_row_id}&to_comment_id=0&to_uid=0&app=public&table=feed&cancomment={$cancomment}&cancomment_old={$cancomment_old}'>{:L('PUBLIC_STREAM_COMMENT')}<neq name='vl.comment_count' value='0'> ({$vl.comment_count}) </neq></a>
+					</eq>
+					<php>endif;</php>
+
+					<em class="hover">
+					<php>if($vl['user_info']['uid'] != $GLOBALS['ts']['mid']){</php>
+					<php>if(CheckPermission('core_normal','feed_report')){</php>
+					<i class="vline">&#8211;</i><a href="javascript:void(0)" event-node='denounce' event-args='aid={$vl.feed_id}&type=feed&uid={$vl.user_info.uid}'>{:L('PUBLIC_STREAM_REPORT')}</a>
+					<php>}</php>
+					<php>}</php>
+					
+					<eq name='vl.actions.delete' value='true'>
+					<!-- 做普通删除权限 和 管理删除权限 判断 & 只有微博可以被删除  -->
+					<php>if(($vl['user_info']['uid'] == $GLOBALS['ts']['mid']) || CheckPermission('core_admin','feed_del') ) {</php>
+					<i class="vline">&#8211;</i>  <a href="javascript:void(0)" event-node ='delFeed' event-args='feed_id={$vl.feed_id}&uid={$vl.user_info.uid}'>{:L('PUBLIC_STREAM_DELETE')}</a>
+					<php>}</php>
+					</eq>
+					</em>
+					</p>
+					<div model-node="comment_detail" class="repeat clearfix" style="display:none;"></div>
+				<else />
+					<p>{:L('PUBLIC_INFO_ALREADY_DELETE_TIPS')}</p>
+					<p class="info">
+						<eq name='vl.actions.favor' value='true'>
+						{:W('Collection',array('type'=>$type,'sid'=>$vl['feed_id'],'stable'=>'feed','sapp'=>'public'))}
+						</eq>
+					</p>
+				</eq>
+				</dd>
+			</dl>
+		</volist>
+	</div>	
+</eq>
+
+
+
+
+<script type="text/javascript">
+	var loadmore = '0';
+	var loadnew = '0';
+	var initNums = '<php> echo $weiboSet['weibo_nums'];</php>';
+</script>
+<script type="text/javascript" src="__THEME__/js/module.weibo.js"></script>
+

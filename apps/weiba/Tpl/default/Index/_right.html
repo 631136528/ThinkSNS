@@ -1,0 +1,27 @@
+<div id="col3" class="st-index-right">
+  <div class="right-wrap">
+     <div class="weiba-pic weiba-box1 clearfix">
+       <div class="weiba-pic-title"><a href="{:U('weiba/Index/weibaList')}" class="right">更多微吧</a><h3>微吧推荐</h3></div>
+       <ul>
+          <volist name="weiba_recommend" id="vo">
+            <li <php>if(is_int($i/5)){</php>class="no-margin"<php>}</php>>
+                <div class="weiba-pic-l"><a href="{:U('weiba/Index/detail',array('weiba_id'=>$vo['weiba_id']))}"><img src="{$vo.logo}" width="50" height="50"/></div><a href="{:U('weiba/Index/detail',array('weiba_id'=>$vo['weiba_id']))}" class="weiba-name">{$vo.weiba_name}</a>
+            </li>
+          </volist>
+       </ul>
+     </div>  
+     <div class="weiba-rank-list weiba-box1">
+       <div class="weiba-pic-title"><h3>微吧排行榜</h3></div>
+       <ul>
+          <volist name="weiba_order" id="v1">
+              <li><i class="ico-num ico-num{$i}"></i>
+                  <dl>
+                     <dt><a href="{:U('weiba/Index/detail',array('weiba_id'=>$v1['weiba_id']))}"><img src="{$v1.logo}" width="30" height="30" /></a></dt>
+                     <dd><p><a href="{:U('weiba/Index/detail',array('weiba_id'=>$v1['weiba_id']))}">{$v1.weiba_name}</a></p><p>粉丝数：{$v1.follower_count|default=0}  帖子数：{$v1.thread_count|default=0}</p></dd>
+                  </dl>
+              </li>
+          </volist>
+       </ul>
+     </div>  
+</div>
+</div>

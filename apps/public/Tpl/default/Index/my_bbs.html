@@ -1,0 +1,40 @@
+<include file="__THEME__/public_header" />
+    <div id="page-wrap">
+        <div id="feedback" class="feedback-fixed"><a href="{:U('public/Index/feedback')}" target="_blank">{:L('PUBLIC_FEEDBACK')}</a></div>
+        <div id="main-wrap" style="width:970px">
+                <!--左边 -->
+                    <!--右边-->
+                    <div class="">
+                        <img src="__THEME__/image/my_bbs.jpg">
+                    </div>
+        </div>
+    </div>    
+<div class="layer-group-list" style="display:none" model-node='layer_group_list'>
+<div class="inner">
+<ul>
+    <volist name='followGroup' id ='f'>
+    <li><a href="{:U('public/Index/index',array('fgid'=>$f['follow_group_id']))}">{$f.title}</a></li>
+    </volist>
+    <li class="line"></li>
+    <php> if(count($followGroup) < 10): </php>                                
+    <li><a href="javascript:void(0)" event-node='addFollowgroup'><i class="ico-add"></i>{:L('PUBLIC_CREATE_GROUP')}</a></li>
+    <php>endif;</php>
+    <li><a href="javascript:void(0)" event-node="editFollowgroup"><i class="ico-setup"></i>{:L('PUBLIC_MANAGE_GROUP')}</a></li>
+</ul>
+</div>
+</div>
+<include file="__THEME__/public_footer" />
+
+<script>
+
+$('ul.feed_file_list').each(function() {
+    
+    $(this).find('li').each(function(i) {
+        if(i % 2 == 0) {
+            $(this).css("background","#fafafa");
+        }
+    });
+});
+</script>
+<script type="text/javascript" src="__THEME__/js/home/module.home.js"></script>
+<script type="text/javascript" src="__THEME__/js/module.weibo.js"></script>
