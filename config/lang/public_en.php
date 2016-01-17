@@ -860,6 +860,7 @@ return array(
 'PUBLIC_SUM_TO_TALL'=>'A total of {num} Article dialogue',
 'PUBLIC_METO'=>'Dialogue between me with',
 'PUBLIC_SAY'=>'says',
+'NOTIFY_GIFT_SEND_CONTENT'=>'',
 'PUBLIC_LANG_SET'=>'Language Setting',
 'PUBLIC_SHARE_FAILED'=>'Share Failed',
 'PUBLIC_SHARE_TOUSE_EMPTY'=>'Share to accept a person cannot be empty',
@@ -1039,6 +1040,8 @@ return array(
 Label class does not exist
 Label class does not exist',
 '_XML_TAG_ERROR_'=>'Label error',
+'PUBLIC_APPNAME_CHANNEL'=>'Channel',
+'NOTIFY_GIFT_SEND_TITLE'=>'',
 'FEEDBACK'=>'Feedback',
 'NOTIFY'=>'Notice',
 'INVITE'=>'Invite',
